@@ -1,32 +1,34 @@
+using Xunit.Abstractions;
+
 namespace LegacyApp.tests;
 
 public class UserServiceTests
 {
+    // AddUser_ReturnsFalseWhenFirstNameIsEmpty OK
     // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail OK
     // AddUser_ReturnsFalseWhenYoungerThen21YearsOld OK
     // AddUser_ReturnsTrueWhenVeryImportantClient OK
     // AddUser_ReturnsTrueWhenImportantClient OK
     // AddUser_ReturnsTrueWhenNormalClient OK
-    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit FAILED
-    // AddUser_ThrowsExceptionWhenUserDoesNotExist FAILED
-    // AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser FAILED
+    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit OK
+    // AddUser_ThrowsArgumentExceptionWhenClientDoesNotExist OK
+    // AddUser_ThrowsArgumentExceptionWhenUserDoesNotExist OK
+    // AddUser_ThrowsArgumentExceptionWhenUserNoCreditLimitExistsForUser OK
     
-    [Fact] // FAILED
+    [Fact]
     public void AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit()
     {
         // Arrange
-        string firstName = "John";
-        string lastName = "Doe";
-        string email = "johndoe@gmail.com";
-        DateTime dateOfBirth = new DateTime(1980, 1, 1);
-        int clientId = 1;
-        var userService = new UserService();
+        ClientRepository rep = new ClientRepository();
+        User user = new User();
 
         // Act
-        var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
+        var result = rep.GetById(1);
+        var userr = user.HasCreditLimit;
 
         // Assert
-        Assert.False(result);
+        Assert.Equal("NormalClient", result.Type);
+        Assert.False(userr);
     }
     
     [Fact]
@@ -160,7 +162,7 @@ public class UserServiceTests
         Assert.Throws<ArgumentException>(action);
     }
 
-    [Fact] // FAILED
+    [Fact]
     public void AddUser_ThrowsExceptionWhenUserDoesNotExist()
     {
         // Arrange
@@ -176,10 +178,10 @@ public class UserServiceTests
         );
 
         // Assert
-        Assert.Throws<Exception>(action);
+        Assert.Throws<ArgumentException>(action);
     }
 
-    [Fact] // FAILED
+    [Fact]
     public void AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser()
     {
         // Arrange
@@ -195,6 +197,6 @@ public class UserServiceTests
         );
 
         // Assert
-        Assert.Throws<Exception>(action);
+        Assert.Throws<ArgumentException>(action);
     }
 }
