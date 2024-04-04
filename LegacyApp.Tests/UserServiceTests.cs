@@ -26,7 +26,7 @@ public class UserServiceTests
         var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
         // Assert
-        Assert.Equal(false, result);
+        Assert.False(result);
     }
     
     [Fact]
@@ -44,7 +44,7 @@ public class UserServiceTests
         var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
         // Assert
-        Assert.Equal(true, result);
+        Assert.True(result);
     }
     
     [Fact]
@@ -62,7 +62,7 @@ public class UserServiceTests
         var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
         // Assert
-        Assert.Equal(true, result);
+        Assert.True(result);
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public class UserServiceTests
         var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
         // Assert
-        Assert.Equal(true, result);
+        Assert.True(result);
     }
 
     [Fact]
@@ -98,7 +98,7 @@ public class UserServiceTests
         var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
         // Assert
-        Assert.Equal(false, result);
+        Assert.False(result);
     }
     
     [Fact]
@@ -116,7 +116,8 @@ public class UserServiceTests
         var result = userService.AddUser(firstName, lastName, email, dateOfBirth, clientId);
 
         // Assert
-        Assert.Equal(false, result);
+        Assert.False(result);
+        
     }
     [Fact]
     public void AddUser_ReturnsFalseWhenFirstNameIsEmpty()
