@@ -151,10 +151,10 @@ public class UserServiceTests
 
         // Act
         Action action = () => userService.AddUser(
-            "Jan", 
-            "Kowalski", 
-            "kowalski@kowalski.pl",
-            DateTime.Parse("2000-01-01"),
+            "Tomasz", 
+            "Problem", 
+            "tomaszproblem@gmail.com",
+            DateTime.Parse("1980-01-01"),
             -1
         );
 
@@ -163,17 +163,17 @@ public class UserServiceTests
     }
 
     [Fact]
-    public void AddUser_ThrowsExceptionWhenUserDoesNotExist()
+    public void AddUser_ThrowsArgumentExceptionWhenUserDoesNotExist()
     {
         // Arrange
         var userService = new UserService();
 
         // Act
         Action action = () => userService.AddUser(
-            "Jan", 
-            "Kowalski", 
-            "kowalski@kowalski.pl",
-            DateTime.Parse("2000-01-01"),
+            "Tomasz", 
+            "Problem", 
+            "tomaszproblem@gmail.com",
+            DateTime.Parse("1980-01-01"),
             -1
         );
 
@@ -182,17 +182,17 @@ public class UserServiceTests
     }
 
     [Fact]
-    public void AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser()
+    public void AddUser_ThrowsArgumentExceptionWhenUserNoCreditLimitExistsForUser()
     {
         // Arrange
         var userService = new UserService();
 
         // Act
         Action action = () => userService.AddUser(
-            "Jan", 
-            "Kowalski", 
-            "kowalski@kowalski.pl",
-            DateTime.Parse("2000-01-01"),
+            "Tomasz", 
+            "Problem", 
+            "tomaszproblem@gmail.com",
+            DateTime.Parse("1980-01-01"),
             -1
         );
 
